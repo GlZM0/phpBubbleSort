@@ -1,3 +1,7 @@
+<?php
+include ("appBody.php");
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,47 +14,17 @@
 <body>
 
 <form name="form" action="" method="get">
+    Podaj ilosc liczb: <br>
     <input type = "text" name = "size" id ="size">
+    <input type = "submit" name="button" value="ENTER">
 </form>
 
 <?php
+    $appBody = new appBody();
 
-$size = $_GET['size'];
-
-    function sortowanieBabelkowe($tablicaL)
-    {
-        do
-        {
-            $swapped = false;
-            for($i = 0, $iloscL = count($tablicaL) - 1; $i < $iloscL; $i++ )
-            {
-                if($tablicaL[$i] > $tablicaL[$i + 1])
-                {
-                    list($tablicaL[$i + 1], $tablicaL[$i]) =
-                        array($tablicaL[$i], $tablicaL[$i + 1]);
-                    $swapped = true;
-                }
-            }
-        }
-        while($swapped);
-        return $tablicaL;
+    if(array_key_exists('button', $_GET)) {
+        $appBody->program();
     }
-
-    $tablicaL = array();
-    function rand_num_generator() {
-        return rand(1,100);
-    }
-
-    for($i=0;$i<$size;$i++) {
-        array_push($tablicaL, rand_num_generator());
-    }
-
-    echo "Liczby przed sortowaniem :\n";
-    print_r($tablicaL);
-    echo "<br>";
-    echo "\nLiczby po sortowaniu\n:";
-    print_r(sortowanieBabelkowe($tablicaL))
-
     ?>
 
 </body>
